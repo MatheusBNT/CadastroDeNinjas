@@ -1,6 +1,9 @@
-package dev.matheus.cadastrodeninjas;
+package dev.matheus.cadastrodeninjas.ninjas.model;
 
+import dev.matheus.cadastrodeninjas.missoes.model.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -8,10 +11,17 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     private String nome;
     private String email;
     private int idade;
+
+
+    //Um ninja tem uma única missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") //foreign key ou chave estrangeira
+    private MissoesModel missoes;
+
 
     public NinjaModel() {
     }
